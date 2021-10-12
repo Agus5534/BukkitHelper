@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
@@ -46,13 +47,24 @@ public abstract class CommandHelper  {
      player.setHealth(health);
   }
 
+  public void setName(Player player,@NotNull String name) {
+      if(name.isEmpty()) {
+          throw new StringIndexOutOfBoundsException("You need to put a String name");
+      } else {
+          if(name.length() >= 30) {
+              throw new StringIndexOutOfBoundsException("You can not exceed 30 characters on String");
+          } else {
+              player.setPlayerListName(name);
+          }
+      }
+
+  }
+
   public void addEffect(Player player, PotionEffectType effect, int duration, int amplifier) {
       player.addPotionEffect((new PotionEffect(effect, duration, amplifier)));
   }
   public UUID getUUID(Player player) {
       return player.getUniqueId();
-
-
   }
   public void setGamemode(Player player, GameMode gamemode) throws InvalidGameModeException{
      if(gamemode == GameMode.CREATIVE) {
