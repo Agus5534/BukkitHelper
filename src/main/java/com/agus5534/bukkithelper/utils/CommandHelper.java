@@ -1,8 +1,6 @@
 package com.agus5534.bukkithelper.utils;
 
-import com.google.common.annotations.Beta;
 import org.bukkit.*;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -10,6 +8,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 
@@ -104,6 +103,27 @@ public abstract class CommandHelper  {
   public void kick(Player player, @Nullable String reason,@Nullable String reasonline2,@Nullable String reasonline3, @Nullable String reasonline4, @Nullable String reasonline5) {
       String total = reason + "\n " + reasonline2 + "\n " + reasonline3 + "\n " + reasonline4 + "\n " + reasonline5;
       player.kickPlayer(total);
+
+
+  }
+
+    /**
+     *
+     * @param player
+     * @param permission Permission to receive logs
+     * @param reason Log reason / cause
+     * @throws StringIndexOutOfBoundsException
+     */
+  public void sendLog(Player player, @NotBlank String permission,@NotBlank String reason) throws StringIndexOutOfBoundsException{
+      if(!permission.isEmpty() && !reason.isEmpty()) {
+          if(player.hasPermission(permission)) {
+              player.sendMessage(ChatColor.translateAlternateColorCodes('&', String.format("&7&o[%s: %s]", player.getName(), reason)));
+          }
+          Bukkit.getLogger().info(String.format("%s: %s", player.getName(), reason));
+      } else {
+          throw new StringIndexOutOfBoundsException("Permission and reason can not be empty!");
+      }
+
   }
 
 
