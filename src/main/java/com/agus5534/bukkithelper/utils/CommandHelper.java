@@ -59,8 +59,8 @@ public abstract class CommandHelper  {
 
   }
 
-  public void addEffect(Player player, PotionEffectType effect, int duration, int amplifier) {
-      player.addPotionEffect((new PotionEffect(effect, duration, amplifier)));
+  public void addEffect(Player player, PotionEffectType effect, int duration, int amplifier,@NotNull boolean ambient,@NotNull boolean particles,@NotNull boolean icon) {
+      player.addPotionEffect((new PotionEffect(effect, duration, amplifier, ambient, particles, icon)));
   }
   public UUID getUUID(Player player) {
       return player.getUniqueId();
