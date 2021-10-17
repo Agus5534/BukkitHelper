@@ -115,9 +115,12 @@ public abstract class CommandHelper  {
      * @throws StringIndexOutOfBoundsException
      */
   public void sendLog(Player player, @NotBlank String permission,@NotBlank String reason) throws StringIndexOutOfBoundsException{
+
       if(!permission.isEmpty() && !reason.isEmpty()) {
-          if(player.hasPermission(permission)) {
-              player.sendMessage(ChatColor.translateAlternateColorCodes('&', String.format("&7&o[%s: %s]", player.getName(), reason)));
+          for(Player p : Bukkit.getOnlinePlayers()) {
+              if(p.hasPermission(permission)) {
+                  p.sendMessage(ChatColor.translateAlternateColorCodes('&', String.format("&7&o[%s: %s]", player.getName(), reason)));
+              }
           }
           Bukkit.getLogger().info(String.format("%s: %s", player.getName(), reason));
       } else {
