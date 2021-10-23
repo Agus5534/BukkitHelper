@@ -100,6 +100,7 @@ public abstract class CommandHelper  {
      * @param reasonline3 Kick reason line 3
      * @param reasonline4 Kick reason line 4
      * @param reasonline5 Kick reason line 5
+     * @apiNote Supports color codes with &code
      */
   public void kick(Player player, @Nullable String reason,@Nullable String reasonline2,@Nullable String reasonline3, @Nullable String reasonline4, @Nullable String reasonline5) {
       String total = ChatColor.translateAlternateColorCodes('&',reason + "\n " + reasonline2 + "\n " + reasonline3 + "\n " + reasonline4 + "\n " + reasonline5);
