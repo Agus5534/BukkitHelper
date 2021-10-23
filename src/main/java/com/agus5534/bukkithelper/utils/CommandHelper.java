@@ -14,6 +14,7 @@ import java.util.UUID;
 
 public abstract class CommandHelper  {
   public boolean onSpectator(Player player) {
+
       if(player.getGameMode() == GameMode.SPECTATOR) {
           return true;
       } else {
@@ -101,7 +102,7 @@ public abstract class CommandHelper  {
      * @param reasonline5 Kick reason line 5
      */
   public void kick(Player player, @Nullable String reason,@Nullable String reasonline2,@Nullable String reasonline3, @Nullable String reasonline4, @Nullable String reasonline5) {
-      String total = reason + "\n " + reasonline2 + "\n " + reasonline3 + "\n " + reasonline4 + "\n " + reasonline5;
+      String total = ChatColor.translateAlternateColorCodes('&',reason + "\n " + reasonline2 + "\n " + reasonline3 + "\n " + reasonline4 + "\n " + reasonline5);
       player.kickPlayer(total);
 
 
